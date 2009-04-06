@@ -1,0 +1,70 @@
+techmeetup talk on security 2009-04
+
+SLIDE: Introduction, name email, url
+
+Hello. My name is tef and I would like to talk to you about computer security, especially web applications, I've worked as a security consultant and I've been interested in hacking from a young age.
+
+SLIDE: Blank
+
+Now I have introduced myself I would like to know a little bit more about the audience. Could you please raise your hand if:
+
+-- had a virus on your computer/mobile phone
+-- had an account or a password stolen
+-- used a site that has been hacked - myspace, phpbb, wordpress
+-- been hacked ?
+   your own code or someone elses?
+
+Hopefully you can see from this small (biased unrepresentative) sample that nearly everyone has been affected by computer security at one point in their lives, but many people when writing a website think "It'll never happen to me".
+
+It does. Personally I've found major bugs in popular websites such as b3ta and livejournal, but major web applications such as myspace, phpbb, drupal have had their share of problems too.
+
+No-one is immune, and if you have bugs people will find them and exploit them.
+
+I don't intend to scare you, I aim to show you how to deal with these problems realistically.
+
+
+To begin, I'd like to tell you what security is all about and why it is important:
+
+SLIDE: Big letters: Money
+
+If you can't keep your users trust, you will lose their business.
+
+Information such as emails, passwords and a large audience make you
+a target.
+
+SLIDE: Infection numbers for wordpress/phpbb worm, overall incident numbers
+Source: Sans/ISC
+
+If you use off the shelf software that's popular you are more at risk. PHPBB and wordpress are prime examples.
+
+Sometimes worms find their next victims by google. You might regret that SEO.
+
+Running buggy software isn't the biggest risk. By far, humans are much buggier.
+
+In the name of security, wikipedia published lists of possible troll accounts as they had identified that trolls often use the same password on multiple accounts.
+
+Trolls didn't pick secure passwords but used obvious ones, but so did a lot of innocent wikipedia users. The staff had just handed to the trolls a list of accounts for which their password would work.
+
+
+People make mistakes when writing code too:
+
+SLIDE: Exploit numbers for the phpbb, bind, sendmail
+Soure: Secunia
+    phpbb, bind, sendmail, 
+
+Threat Models - Realistic considerations of security aka What's your threat model, how attackers think
+
+What's your threat model? 
+the four most important words in security.
+
+Slide: "WYTM" http://iang.org/ssl/wytm.html 
+
+To be able to prepare and test for problems you need to think about what you're defending against. A good start is to break down the likely attackers:
+
+Slide: Trolls/Opportunistic Hackers/ Automated Exploits 
+
+Common Threats - OWASP and Sans top 10
+XSS and SQL injections - what they are and how they are easily prevented
+Testing - a plan and tools avaliable
+Wrap up - some fun bugs and hacks I couldn't fit in elsewhere, Q&A
+
