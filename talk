@@ -63,8 +63,83 @@ To be able to prepare and test for problems you need to think about what you're 
 
 Slide: Trolls/Opportunistic Hackers/ Automated Exploits 
 
-Common Threats - OWASP and Sans top 10
-XSS and SQL injections - what they are and how they are easily prevented
-Testing - a plan and tools avaliable
-Wrap up - some fun bugs and hacks I couldn't fit in elsewhere, Q&A
+Trolls are just going to annoy your users
+An opportunistic hacker is going to try and find interesting information
+Automated exploits are looking to infect your userbase.
 
+This seperation is useful for understanding who is likely different kinds of attacks, so I guess it's about time we get onto the vulnerabilities themselves
+
+Slide: OWASP Top 10
+Source: http://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
+
+The OWASP is an organisation dedicated to web security, and this is their list of top ten vulnerabilities:
+
+::Explain each one in english
+
+I'm going to explain a few of these 
+
+To put into context, this is the SANS Top 10
+
+Slide: SANS top 10
+
+SANS is like OWASP, but dealing with internet security in general.
+
+::Explain each one in english
+
+Let's go back to the web vulnerabilties and take a look at a number of exploits.
+
+Slide: XSS (big)
+At number one we have cross site scripting errors, which essentially boils down to arbitrary javascript being inserted into pages. Javascript is a very powerful language, and the uses of XSS are endless.
+
+If your blog has a comment feature, it is likely it will accept some markup language or a subset of html, but if an attacker can bypass this they can post any text they like to your page.
+
+This code can be used to look at the cookies and send them back to the attacker, or to try and hijack the browser to install spyware.
+
+Its a big problem with a small solution - you just need to santize any user text before returning it to the browser, and most modern frameworks or templates make this easy.
+
+But you still need to test it to make sure it works.
+
+At number two - "Injection flaws".
+It's the same afair again. Instead of untrusted data being sent to the browser, this time it's untrusted data being sent to the database.
+
+This was a bigger problem before Rails, Django and ORMs in general. Previously people carved up raw sql statements and all the problems they brought. Today this is a relatively solved problem for databases.
+
+But there can still be problems when the database and the web app don't match up. 
+
+In many sites you can retrieve your password by submitting your email.
+
+Webapps rarely care how long a piece of text is, and so you could submit 
+"victim@email.com        (lots of spaces); attacker@naughy.biz"
+
+Slide:"victim@email.com        (lots of spaces); attacker@naughy.biz"
+
+The database is more picky, and drops everything after a fixed number of characters (say 256). Now, in MS-SQL it truncates the whitespace.
+
+So when you think you're sending "victim..@bla      attacker@...", the database just gets "victim@email.com".
+
+But the mail client is never as picky, it's happy to have such a long big of text, and so sends the reminder to both the victim and the attacker.
+
+Moral: Databases move in mysterious ways.
+
+Note:: If I have time I'll deal with cross site request forgery too (#5)
+
+Again, no solution is complete without testing.
+
+Slide: Testing
+
+    network testing - nmap, nessus
+    http testing - paxos, firebug, burp network suite
+
+There are a plethora of tools out there, and a lot of it comes down to taste. Beware though, if you think interfaces designed by programmers were bad, wait until you see these tools. 
+
+I don't have enough time to cover all of these tools, but network testing is more about the platform you're running on (linux/apache), and http testing is your web app stack. 
+
+Final Slide:
+    Further information
+        OWASP
+        SANS/ISC
+        F_secure blog
+
+I hope you've enjoyed my talk, and maybe tomorrow there might be a few less bugs out there.
+
+Questions?
